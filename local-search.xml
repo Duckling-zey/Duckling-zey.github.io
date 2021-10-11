@@ -8,8 +8,14 @@
     <link href="/2021/10/09/markdown%E8%AF%AD%E6%B3%95%E5%85%A5%E9%97%A8/"/>
     <url>/2021/10/09/markdown%E8%AF%AD%E6%B3%95%E5%85%A5%E9%97%A8/</url>
     
-    <content type="html"><![CDATA[<h1 id="Markdown的基础语法使用"><a href="#Markdown的基础语法使用" class="headerlink" title="Markdown的基础语法使用"></a>Markdown的基础语法使用</h1><blockquote><p>Markdown是一种轻量级标记语言，排版语法简洁，让人们更多地关注内容本身而非排版。它使用易读易写的纯文本格式编写文档，可与HTML混编，可导出 HTML、PDF 以及本身的 .md 格式的文件。因简洁、高效、易读、易写，Markdown被大量使用，如Github、Wikipedia等网站，如各大博客平台：WordPress、Drupal、简书等。</p></blockquote><h2 id="1、Markdown标题语法"><a href="#1、Markdown标题语法" class="headerlink" title="1、Markdown标题语法"></a>1、Markdown标题语法</h2><p>Markdown中使用<code>#</code>字符为文章创建标题，<code>#</code>的数量多少用以表示标题级别，例如：<br><code># 标题1</code> 相当于HTML中<code> &lt;h1&gt;标题1&lt;/h1&gt;</code><br><code>## 标题2</code> 相当于HTML中<code> &lt;h2&gt;标题2&lt;/h2&gt;</code><br><code>### 标题3</code> 相当于HTML中<code> &lt;h3&gt;标题2&lt;/h3&gt;</code><br><code>#### 标题4</code> 相当于HTML中<code> &lt;h4&gt;标题2&lt;/h4&gt;</code><br><code>##### 标题5</code> 相当于HTML中<code> &lt;h5&gt;标题2&lt;/h5&gt;</code><br><code>###### 标题6</code> 相当于HTML中<code> &lt;h6&gt;标题2&lt;/h6&gt;</code>     </p>]]></content>
+    <content type="html"><![CDATA[<h1 id="Markdown基础语法使用"><a href="#Markdown基础语法使用" class="headerlink" title="Markdown基础语法使用"></a>Markdown基础语法使用</h1><p>网上找到了个人认为最适合新手的<a href="https://markdown.com.cn/basic-syntax/">Markdown教程</a>，故不自己写了</p>]]></content>
     
+    
+    <categories>
+      
+      <category>标记语言</category>
+      
+    </categories>
     
     
     <tags>
@@ -17,19 +23,6 @@
       <tag>Markdown</tag>
       
     </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="/2021/10/09/hello-world/"/>
-    <url>/2021/10/09/hello-world/</url>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
-    
-    
     
   </entry>
   
