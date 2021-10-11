@@ -4,17 +4,17 @@
   
   
   <entry>
-    <title>第一篇博客</title>
-    <link href="/2021/10/09/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"/>
-    <url>/2021/10/09/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+    <title>Markdown语法入门</title>
+    <link href="/2021/10/09/markdown%E8%AF%AD%E6%B3%95%E5%85%A5%E9%97%A8/"/>
+    <url>/2021/10/09/markdown%E8%AF%AD%E6%B3%95%E5%85%A5%E9%97%A8/</url>
     
-    <content type="html"><![CDATA[<p>1、hexo搭建的第一篇博客</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="Markdown的基础语法使用"><a href="#Markdown的基础语法使用" class="headerlink" title="Markdown的基础语法使用"></a>Markdown的基础语法使用</h1><blockquote><p>Markdown是一种轻量级标记语言，排版语法简洁，让人们更多地关注内容本身而非排版。它使用易读易写的纯文本格式编写文档，可与HTML混编，可导出 HTML、PDF 以及本身的 .md 格式的文件。因简洁、高效、易读、易写，Markdown被大量使用，如Github、Wikipedia等网站，如各大博客平台：WordPress、Drupal、简书等。</p></blockquote><h2 id="1、Markdown标题语法"><a href="#1、Markdown标题语法" class="headerlink" title="1、Markdown标题语法"></a>1、Markdown标题语法</h2><p>Markdown中使用<code>#</code>字符为文章创建标题，<code>#</code>的数量多少用以表示标题级别，例如：<br><code># 标题1</code> 相当于HTML中<code> &lt;h1&gt;标题1&lt;/h1&gt;</code><br><code>## 标题2</code> 相当于HTML中<code> &lt;h2&gt;标题2&lt;/h2&gt;</code><br><code>### 标题3</code> 相当于HTML中<code> &lt;h3&gt;标题2&lt;/h3&gt;</code><br><code>#### 标题4</code> 相当于HTML中<code> &lt;h4&gt;标题2&lt;/h4&gt;</code><br><code>##### 标题5</code> 相当于HTML中<code> &lt;h5&gt;标题2&lt;/h5&gt;</code><br><code>###### 标题6</code> 相当于HTML中<code> &lt;h6&gt;标题2&lt;/h6&gt;</code>     </p>]]></content>
     
     
     
     <tags>
       
-      <tag>美汁汁</tag>
+      <tag>Markdown</tag>
       
     </tags>
     
