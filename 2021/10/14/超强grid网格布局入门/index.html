@@ -1,0 +1,549 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/avatar.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="凡夫">
+  <meta name="keywords" content="">
+  <meta name="description" content="简介什么是grid网格布局，望文生义，将页面分成一个一个网格状的布局方式称为网格布局，它是目前css布局中最为强大的布局，学会网格布局，将会大幅度减少写css的量，配合vue的组件化开发，将使我们的开发效率更上一层楼。（ps:部分浏览器存在兼容性问题，使用请按需求来）                 本文参考了阮一峰老师的博文，阮一峰老师写的非常通俗易懂，本打算直接附上链接供大家自行学习，但是想着">
+<meta property="og:type" content="article">
+<meta property="og:title" content="超强Grid网格布局入门">
+<meta property="og:url" content="http://example.com/2021/10/14/%E8%B6%85%E5%BC%BAgrid%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="凡夫">
+<meta property="og:description" content="简介什么是grid网格布局，望文生义，将页面分成一个一个网格状的布局方式称为网格布局，它是目前css布局中最为强大的布局，学会网格布局，将会大幅度减少写css的量，配合vue的组件化开发，将使我们的开发效率更上一层楼。（ps:部分浏览器存在兼容性问题，使用请按需求来）                 本文参考了阮一峰老师的博文，阮一峰老师写的非常通俗易懂，本打算直接附上链接供大家自行学习，但是想着">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.wangbase.com/blogimg/asset/201903/1_bg2019032503.png">
+<meta property="og:image" content="https://www.wangbase.com/blogimg/asset/201903/1_bg2019032502.png">
+<meta property="article:published_time" content="2021-10-14T02:34:18.000Z">
+<meta property="article:modified_time" content="2021-10-14T09:41:06.094Z">
+<meta property="article:author" content="凡夫">
+<meta property="article:tag" content="布局">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.wangbase.com/blogimg/asset/201903/1_bg2019032503.png">
+  
+  <title>超强Grid网格布局入门 - 凡夫</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>凡夫随笔</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/bg/bground.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="超强Grid网格布局入门">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      凡夫
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-14 10:34" pubdate>
+        2021年10月14日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">超强Grid网格布局入门</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年10月14日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>什么是grid网格布局，望文生义，将页面分成一个一个网格状的布局方式称为网格布局，它是目前css布局中最为强大的布局，学会网格布局，将会大幅度减少写css的量，配合vue的组件化开发，将使我们的开发效率更上一层楼。（ps:部分浏览器存在兼容性问题，使用请按需求来）  </p>
+ <div class="note note-secondary">
+            <p>本文参考了阮一峰老师的博文，阮一峰老师写的非常通俗易懂，本打算直接附上链接供大家自行学习，但是想着写一写博文，有助于自己理解得更透彻，因此还是决定写下这篇博客，文末附上链接，不愿看我写的小伙伴可以直接右边目录跳转至参考资料🤪 </p>
+          </div> 
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>Grid 布局与 Flex 布局有一定的相似性，都可以指定容器内部多个项目的位置。但是，它们也存在重大区别。</p>
+<p>Flex 布局是轴线布局，只能指定”项目”针对轴线的位置，可以看作是一维布局。Grid 布局则是将容器划分成”行”和”列”，产生单元格，然后指定”项目所在”的单元格，可以看作是二维布局。Grid 布局远比 Flex 布局强大。学习grid布局前，先了解以下概念，助于理解学习😄</p>
+<h3 id="容器和项目"><a href="#容器和项目" class="headerlink" title="容器和项目"></a>容器和项目</h3><p>采用网格布局的区域称为容器，容器内部顶层子元素称为项目</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;display:grid&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>如上所示，采用了grid布局的div称为容器<code>container</code>，其项目为容器内顶层子元素<code>div</code>，<code>&lt;p&gt;</code>不是顶层子元素，因此不属于该容器的项目<code>item</code>，故<code>display:grid</code>属性不会对<code>&lt;p&gt;&lt;/p&gt;</code>标签生效</p>
+<h3 id="网格线"><a href="#网格线" class="headerlink" title="网格线"></a>网格线</h3><p>划分网格的线，称为”网格线”（grid line）。水平网格线划分出行，垂直网格线划分出列。</p>
+<p>正常情况下，n行有<span class="label label-warning">n + 1</span>根水平网格线，m列有<span class="label label-warning">m + 1</span>根垂直网格线，比如三行就有四根水平网格线。<br><img src="https://www.wangbase.com/blogimg/asset/201903/1_bg2019032503.png" srcset="/img/loading.gif" lazyload alt="网格线"><br>如上图所示是一个4行x4列的网格布局，那么它的网格线就有(4+1)根横向网格线，(4+1)根纵向网格线</p>
+<h3 id="行和列"><a href="#行和列" class="headerlink" title="行和列"></a>行和列</h3><p>容器里头的水平区域称为行<code>row</code>,垂直区域称为列<code>column</code><br>结合上面网格线内容，可以得出，n条横/纵网格线生成<code>n-1</code>行/列<br><img src="https://www.wangbase.com/blogimg/asset/201903/1_bg2019032502.png" srcset="/img/loading.gif" lazyload alt="行/列"><br>如上所示：水平的深色区域就是”行”，垂直的深色区域就是”列”。</p>
+<h3 id="单元格"><a href="#单元格" class="headerlink" title="单元格"></a>单元格</h3><p>行与列交叉形成单元格(cell)<br>正常情况下n行m列会形成<code>n × m</code>个单元格<br>如上图网格线内容所示4行4列则形成16个单元格</p>
+<h2 id="容器属性和项目属性"><a href="#容器属性和项目属性" class="headerlink" title="容器属性和项目属性"></a>容器属性和项目属性</h2><p>Grid布局的属性分为两类,一类是定义在容器上的属性称为容器属性，另一类则是定义在项目上的属性称为项目属性。这一块的知识点建议大家先理解透了上面基础概念,再边看<a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html">阮老师的博文</a>，<a target="_blank" rel="noopener" href="https://jsbin.com/guvivum/edit?html,css,output">边敲代码</a>，这样有助于对属性的作用理解的更透彻,博主这边只对属性做个整理。</p>
+<h3 id="容器属性"><a href="#容器属性" class="headerlink" title="容器属性"></a>容器属性</h3><p>对采用Grid网格布局的整个大容器生效的属性</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-selector-tag">div</span>&#123;<br>    <span class="hljs-attribute">display</span>: grid;  <span class="hljs-comment">//设为网格布局（可选inline-grid）</span><br>    grid-template-<span class="hljs-attribute">columns</span>:<span class="hljs-number">120px</span> <span class="hljs-number">120px</span> <span class="hljs-number">120px</span>; <span class="hljs-comment">//设置列宽 可用百分比/fr/repet()函数，具体看阮老师博客</span><br>    grid-template-rows:<span class="hljs-number">150px</span> <span class="hljs-number">150px</span> <span class="hljs-number">150px</span>; <span class="hljs-comment">//设置行高 可用百分比/fr/repet()函数，具体看阮老师博客</span><br>    row-gap: <span class="hljs-number">20px</span>; <span class="hljs-comment">//设置行间距</span><br>    <span class="hljs-attribute">column-gap</span>: <span class="hljs-number">20px</span>; <span class="hljs-comment">//设置列间距</span><br>    &lt;!-- gap:<span class="hljs-number">20px</span>; <span class="hljs-comment">//同时设置行列间距 --&gt;</span><br>    grid-template-areas: <span class="hljs-string">&#x27;a b c&#x27;</span><br>                       <span class="hljs-string">&#x27;d e f&#x27;</span><br>                       <span class="hljs-string">&#x27;g h i&#x27;</span>; <span class="hljs-comment">//区域属性，这块功能强烈建议看阮老师博客，将区域定为9个命名单元格</span><br>    grid-<span class="hljs-attribute">auto</span>-flow:row; <span class="hljs-comment">//项目排列顺序默认row表示先行后列，先横向再纵向，可选值：column</span><br>    justify-items: start | end | center | stretch; <span class="hljs-comment">//设置单元格内容的水平位置（左中右）</span><br>    <span class="hljs-attribute">align-items</span>: start | end | center | stretch; <span class="hljs-comment">//属性设置单元格内容的垂直位置（上中下）。</span><br>    &lt;!-- place-items: start end; <span class="hljs-comment">//以上两属性合并简写 --&gt;</span><br>    <span class="hljs-comment">//整个内容区域在容器里面的水平位置（左中右）</span><br>    <span class="hljs-attribute">justify-content</span>: start | end | center | stretch | space-around | space-between | space-evenly;<br>    <span class="hljs-comment">//整个内容区域在容器里面的垂直位置（上中下）</span><br>    <span class="hljs-attribute">align-content</span>: start | end | center | stretch | space-around | space-between | space-evenly;<br>    &lt;!-- place-<span class="hljs-attribute">content</span>: space-around space-evenly; <span class="hljs-comment">//以上两属性合并简写  --&gt;</span><br>    grid-<span class="hljs-attribute">auto</span>-rows: <span class="hljs-number">50px</span>; <span class="hljs-comment">//grid-auto-columns属性和grid-auto-rows属性用来设置，浏览器自动创建的多余网格的列宽和行高。它们的写法与grid-template-columns和grid-template-rows完全相同。如果不指定这两个属性，浏览器完全根据单元格内容的大小，决定新增网格的列宽和行高。</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="note note-danger">
+            <p>注意，设为网格布局以后，容器子元素（项目）的float、display: inline-block、display: table-cell、vertical-align和column-*等设置都将失效。</p>
+          </div>
+
+<h3 id="项目属性"><a href="#项目属性" class="headerlink" title="项目属性"></a>项目属性</h3><p>顾名思义，只对容器内单个项目item生效的属性</p>
+<pre><code>div .item1&#123;
+    grid-column-start: 1; //左边框所在的垂直网格线
+    grid-column-end: 3; //右边框所在的垂直网格线
+    grid-row-start: 2; //上边框所在的水平网格线
+    grid-row-end: 4; //下边框所在的水平网格线
+    &lt;!-- grid-column --&gt;
+    &lt;!-- grid-row   --&gt;
+    &lt;!-- 以上合并简写形式  --&gt;
+
+    grid-area:a; //属性指定项目放在哪一个区域。和容器属性grid-template-areas搭配使用
+
+    justify-self: start | end | center | stretch; //属性设置单元格内容的水平位置（左中右），跟justify-items属性的用法完全一致，但只作用于单个项目。
+    align-self: start | end | center | stretch; //属性设置单元格内容的垂直位置（上中下），跟align-items属性的用法完全一致，也是只作用于单个项目。
+    &lt;!-- place-self: center center;//以上两属性合并简写 --&gt;
+&#125;
+</code></pre>
+<p>(本文完结，感谢阅读)</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html">阮一峰老师grid布局教程</a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/grid">MDN上的grid布局</a>
+<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/CSS/">CSS</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%B8%83%E5%B1%80/">布局</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/12/css3%E6%96%B0%E7%89%B9%E6%80%A7%E6%95%B4%E7%90%86/">
+                        <span class="hidden-mobile">css3新特性整理(长期更新总结)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"3RroP4kX01UwkMkBheQMEt3Y-MdYXbMMI","appKey":"272lbUyG1sRpntG3YBOA9Q5e","path":"window.location.pathname","placeholder":"文明吐槽😘(建议输入昵称及邮箱,以便接收回复提醒)","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":null,"emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"3RroP4kX01UwkMkBheQMEt3Y-MdYXbMMI","appkey":"272lbUyG1sRpntG3YBOA9Q5e"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

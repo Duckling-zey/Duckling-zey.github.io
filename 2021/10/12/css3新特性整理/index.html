@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/CSS3img/css3.webp">
 <meta property="article:published_time" content="2021-10-12T05:46:41.000Z">
-<meta property="article:modified_time" content="2021-10-13T06:34:21.340Z">
+<meta property="article:modified_time" content="2021-10-14T02:41:12.739Z">
 <meta property="article:author" content="凡夫">
 <meta property="article:tag" content="css3">
 <meta name="twitter:card" content="summary_large_image">
@@ -245,12 +245,12 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年10月13日 下午
+                  本文最后更新于：2021年10月14日 上午
                 
               </p>
             
             <div class="markdown-body">
-              <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>CSS3是CSS（层叠样式表）技术的升级版本，于1999年开始制订，2001年5月23日W3C完成了CSS3的工作草案，主要包括盒子模型、列表模块、超链接方式、语言模块、背景和边框、文字特效、多栏布局等模块。<code>(以上摘自百度百科，嘿嘿)</code>本文主要整理部分开发中常用到的css3新特性</p>
+              <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>CSS3是CSS（层叠样式表）技术的升级版本，于1999年开始制订，2001年5月23日W3C完成了CSS3的工作草案，主要包括盒子模型、列表模块、超链接方式、语言模块、背景和边框、文字特效、多栏布局等模块。<code>(以上摘自百度百科，嘿嘿)</code>本文主要整理部分开发中常用到的css3新特性</p>
 <h2 id="1-属性选择器"><a href="#1-属性选择器" class="headerlink" title="1.属性选择器"></a>1.属性选择器</h2><p>以下为css3支持的选择器<br><img src="/img/CSS3img/css3.webp" srcset="/img/loading.gif" lazyload alt="css3选择器" title="css3选择器"><br>图片来自w3c。这一块建议大家去w3c看<a target="_blank" rel="noopener" href="https://www.w3school.com.cn/cssref/css_selectors.asp">(CSS 选择器参考手册)</a>，那里的例子通俗易懂。提供的选择器里面，基本都挺好用的。但是有些不会很常用，比如，<code>:root，:empty，:target，:enabled，:checked</code>。而且几个不推荐使用，网上的说法是性能较差<code>[attribute*=value]，[attribute$=value]，[attribute^=value]</code>，这个我没用过，自行尝试。</p>
 <h2 id="2-过渡效果transition"><a href="#2-过渡效果transition" class="headerlink" title="2.过渡效果transition"></a>2.过渡效果transition</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-attribute">transition</span>： CSS属性，花费时间，效果曲线(默认ease)，延迟时间(默认<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
 <h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/*宽度从原始值到制定值的一个过渡，运动曲线ease,运动时间0.5秒，0.2秒后执行过渡*/</span><br><span class="hljs-attribute">transition</span>：<span class="hljs-attribute">width</span>,.<span class="hljs-number">5s</span>,ease,.<span class="hljs-number">2s</span><br><br><span class="hljs-comment">/*所有属性从原始值到制定值的一个过渡，运动曲线ease,运动时间0.5秒*/</span><br><span class="hljs-attribute">transition</span>：all,.<span class="hljs-number">5s</span><br><br><span class="hljs-comment">/*以上为简写，下面为单属性*/</span><br><span class="hljs-attribute">transition-property</span>: width;<br><span class="hljs-attribute">transition-duration</span>: <span class="hljs-number">1s</span>;<br><span class="hljs-attribute">transition-timing-function</span>: linear;<br><span class="hljs-attribute">transition-delay</span>: <span class="hljs-number">2s</span>;<br></code></pre></td></tr></table></figure>
@@ -325,6 +325,12 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2021/10/14/%E8%B6%85%E5%BC%BAgrid%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80%E5%85%A5%E9%97%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">超强Grid网格布局入门</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
@@ -352,7 +358,7 @@
     Fluid.utils.loadComments('#valine', function() {
       Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
         var options = Object.assign(
-          {"appId":"3RroP4kX01UwkMkBheQMEt3Y-MdYXbMMI","appKey":"272lbUyG1sRpntG3YBOA9Q5e","path":"window.location.pathname","placeholder":"文明吐槽😘(建议输入昵称及邮箱,以便接收回复提醒)","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":null,"emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appid":"3RroP4kX01UwkMkBheQMEt3Y-MdYXbMMI","appkey":"272lbUyG1sRpntG3YBOA9Q5e"},
+          {"appId":"3RroP4kX01UwkMkBheQMEt3Y-MdYXbMMI","appKey":"272lbUyG1sRpntG3YBOA9Q5e","path":"window.location.pathname","placeholder":"文明吐槽😘(建议输入昵称及邮箱,以便接收回复提醒)","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":null,"emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"3RroP4kX01UwkMkBheQMEt3Y-MdYXbMMI","appkey":"272lbUyG1sRpntG3YBOA9Q5e"},
           {
             el: "#valine",
             path: window.location.pathname
