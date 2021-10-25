@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>关于iview框架Modal组件使用的问题</title>
+    <link href="/2021/10/25/%E5%85%B3%E4%BA%8Eiview%E6%A1%86%E6%9E%B6Modal%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <url>/2021/10/25/%E5%85%B3%E4%BA%8Eiview%E6%A1%86%E6%9E%B6Modal%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>公司开发项目所用前端框架一直是iview，最近在使用iview中Modal组件时遇到了一个问题，特写此贴记录</p><h1 id="问题复现"><a href="#问题复现" class="headerlink" title="问题复现"></a>问题复现</h1><p>在页面中引入我司封装好的附件上传组件没有问题，新的需求需要在Modal组件中引入附件上传组件，如下代码所示</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- Modal组件 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">Modal</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">Row</span>&gt;</span><br>     <span class="hljs-comment">&lt;!-- 我司封装附件上传组件 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">attachmentModule</span></span><br><span class="hljs-tag">     <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;showAttachmentModule&quot;</span></span><br><span class="hljs-tag">     <span class="hljs-attr">:attachmentLists</span>=<span class="hljs-string">&quot;attachmentLists&quot;</span></span><br><span class="hljs-tag">    &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">attachmentModule</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">Row</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">Modal</span>&gt;</span><br></code></pre></td></tr></table></figure><p>该组件会在mounted阶段调用接口获取已上传的附件列表，当我们代码写好后，问题来了！组件只会在第一次弹开弹窗的时候生效，也就是说只有在第一次弹窗能调用获取附件的接口，此后都不会调用该接口。</p><h1 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h1><p>在知晓没有调用接口的情况下，我们不难猜出，组件在第一遍以后可能没有重新加载mounted阶段，这就意味着dom没有重新渲染，因此我在Modal所在组件mounted生命周期中console.log()了一串字符，保存刷新页面后发现：Modal组件在没有显示弹窗的时候就打印了该字符，也就是说在父组件中Modal已经渲染了一遍，走了一遍生命周期，因此我们可以得出弹窗的显隐应该是v-show(本质是控制dom的visible显隐属性)来控制而非v-if(v-if会动态渲染dom组件)  </p><p>可能有人会说你的附件上传组件用的就是v-if啊 怎么会没有重新渲染呢？因为<code>&lt;Modal&gt;</code>组件没有重新渲染，因此v-if判断条件showAttachmentModule的值自第一遍之后就一直没有改变过，这样自然不会触发附件上传组件的mounted生命周期以调用获取附件接口。</p><h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>知晓上述缘由后，我们只需要使附件上传组件在Modal组件调用时重新渲染即可，查看iview官方文档:modal组件提供了on-cancel这个在点击弹窗取消时的回调方法，因此我们在@on-cancle事件里重新赋值showAttachmentModule的值为初始值就解决这个问题啦，如下</p><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs arduino">&lt;<span class="hljs-keyword">template</span>&gt;<br>&lt;Modal<br>      v-model=<span class="hljs-string">&quot;isShow&quot;</span><br>      :mask-closable=<span class="hljs-string">&quot;false&quot;</span><br>      ok-text=<span class="hljs-string">&quot;保存&quot;</span><br>      @on-cancel=<span class="hljs-string">&quot;deleteFormData&quot;</span>    <span class="hljs-comment">//取消回调</span><br>      width=<span class="hljs-string">&quot;80&quot;</span><br>    &gt;<br>&lt;/Modal&gt;<br>&lt;/<span class="hljs-keyword">template</span>&gt;<br><br><br>methods:&#123;<br>    <span class="hljs-comment">// 重置信息</span><br>    <span class="hljs-built_in">deleteFormData</span>() &#123;<br>      <span class="hljs-keyword">this</span>.$refs.addFenDuanForm.<span class="hljs-built_in">resetFields</span>();<br>      <span class="hljs-keyword">this</span>.showAttachmentModule = <span class="hljs-literal">false</span>; <span class="hljs-comment">//重置为初始值</span><br>    &#125;,<br>&#125;<br></code></pre></td></tr></table></figure><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[^1] <a href="http://v3.iviewui.com/components/modal#API">iview官方文档</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>前端框架相关</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>iview</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>超强Grid网格布局入门</title>
     <link href="/2021/10/14/%E8%B6%85%E5%BC%BAgrid%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80%E5%85%A5%E9%97%A8/"/>
     <url>/2021/10/14/%E8%B6%85%E5%BC%BAgrid%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80%E5%85%A5%E9%97%A8/</url>
