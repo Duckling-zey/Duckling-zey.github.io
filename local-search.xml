@@ -4,6 +4,56 @@
   
   
   <entry>
+    <title>使用Vue Router传值的一些问题</title>
+    <link href="/2022/01/08/Router%E4%BC%A0%E5%80%BC%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/"/>
+    <url>/2022/01/08/Router%E4%BC%A0%E5%80%BC%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在写项目期间，频繁用到路由传值，特在此记录路由传值的一些要点，众所周知，VueRouter中传参分为params和query两种传参方式，特于此记录下两者的异同</p><h1 id="params传参"><a href="#params传参" class="headerlink" title="params传参"></a>params传参</h1><p>params传参，就好比post请求，其参数不会显示在地址栏中，其用法如下所示</p><h3 id="声明式"><a href="#声明式" class="headerlink" title="声明式"></a>声明式</h3><figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="xml"><span class="hljs-comment">&lt;!-- name为组件路由名，params为参数 --&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">:to</span>=<span class="hljs-string">&quot;</span></span></span><span class="hljs-template-variable">&#123; name: &#x27;home&#x27;, params: &#123; username: username &#125;</span><span class="xml"><span class="hljs-tag"><span class="hljs-string"> &#125;&quot;</span>&gt;</span></span><br></code></pre></td></tr></table></figure><h3 id="编程式"><a href="#编程式" class="headerlink" title="编程式"></a>编程式</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs stylus">data:&#123;<br> username: <span class="hljs-string">&#x27;&#x27;</span><br>&#125;,<br><span class="hljs-function"><span class="hljs-title">login</span><span class="hljs-params">()</span></span> &#123;<br>  this.<span class="hljs-variable">$router</span><span class="hljs-selector-class">.push</span>(&#123;<br>    name: <span class="hljs-string">&#x27;home&#x27;</span>, <br>    params: &#123; username: this<span class="hljs-selector-class">.username</span> &#125;,<br>  &#125;)<br>&#125;<br></code></pre></td></tr></table></figure><blockquote><p><em><strong>注意：使用params传参时必须配合name使用，使用path将无效(亲测)</strong></em></p></blockquote><p><strong>params传参在使用时，如果用户刷新了页面，那么参数则会失效，解决上述问题的办法是使用官方的动态路由，如下所示，在路由配置中添加后置参数</strong></p><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">const routes = [<br>  &#123;<br>   <span class="hljs-type">path</span>: <span class="hljs-string">&#x27;/home/:username&#x27;</span>,<br>   <span class="hljs-type">name</span>: <span class="hljs-string">&#x27;/home&#x27;</span>,<br>   component: Home<br>  &#125;<br></code></pre></td></tr></table></figure><p>如上所示，虽然解决了刷新丢参的问题，但是参数也会显性的展示在地址栏中，像<code>http://localhost:4000/home/admin(参数)</code>这样,因此在实际开发中还是要根据参数的重要性来决定用不用这种方法，好了下面讲一下query传参</p><h3 id="取参"><a href="#取参" class="headerlink" title="取参"></a>取参</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">this</span>.$route.<span class="hljs-keyword">params</span><br></code></pre></td></tr></table></figure><p><strong>注意此处是<code>$route</code>,而非<code>$router</code></strong></p><h1 id="query传参"><a href="#query传参" class="headerlink" title="query传参"></a>query传参</h1><h3 id="声明式-1"><a href="#声明式-1" class="headerlink" title="声明式"></a>声明式</h3><p>和params传参仅差属性名不同，将params改为query即可</p><figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="xml"><span class="hljs-comment">&lt;!-- name为组件路由名，query为参数 --&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">:to</span>=<span class="hljs-string">&quot;</span></span></span><span class="hljs-template-variable">&#123; name: &#x27;home&#x27;, query: &#123; username: username &#125;</span><span class="xml"><span class="hljs-tag"><span class="hljs-string"> &#125;&quot;</span>&gt;</span></span><br></code></pre></td></tr></table></figure><h3 id="编程式-1"><a href="#编程式-1" class="headerlink" title="编程式"></a>编程式</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs stylus">data:&#123;<br> username: <span class="hljs-string">&#x27;&#x27;</span><br>&#125;,<br><span class="hljs-function"><span class="hljs-title">login</span><span class="hljs-params">()</span></span> &#123;<br>  this.<span class="hljs-variable">$router</span><span class="hljs-selector-class">.push</span>(&#123;<br>    name: <span class="hljs-string">&#x27;home&#x27;</span>, <br>    <span class="hljs-comment">//path:&#x27;/home&#x27;,//亲测两者都可以</span><br>    query: &#123; username: this<span class="hljs-selector-class">.username</span> &#125;,<br>  &#125;)<br>&#125;<br></code></pre></td></tr></table></figure><blockquote><p><em><strong>注意：使用query传参时虽然不会有页面刷新参数丢失的问题，但是query传参类似于get传参，其参数会展现在地址栏中，因此实际开发也需要根据参数的重要性来使用合理的传参方法</strong></em></p></blockquote><h3 id="取参-1"><a href="#取参-1" class="headerlink" title="取参"></a>取参</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml">this.$route.query<br><span class="hljs-comment">&lt;!-- 注意此处依然是`$route`而非`$router` --&gt;</span><br></code></pre></td></tr></table></figure><blockquote><p><strong>补充一点自己在使用query时碰到的问题，传的参数如果是Boolean值，在刷新页面后获得的query参数会变为string类型，比如传参<code>query&#123;isRight:true&#125;</code> 第一次跳转打印console.log(this.$route,query.isRight)的值为<code>true</code>,此时刷新页面再打印出来的值会变为string类型<code>&#39;true&#39;</code>因此我们在传参时应尽量避免直接传递Boolean类型值</strong></p></blockquote><p>（本文完结，感谢阅读）</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a href="https://router.vuejs.org/zh/guide/">VueRouter官方教程</a><a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>]]></content>
+    
+    
+    <categories>
+      
+      <category>vueRouter</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>vueRouter</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>vue3简单入门</title>
+    <link href="/2021/12/02/vue3%E7%AE%80%E5%8D%95%E5%85%A5%E9%97%A8/"/>
+    <url>/2021/12/02/vue3%E7%AE%80%E5%8D%95%E5%85%A5%E9%97%A8/</url>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>还没开始写，最近有点忙有点忙，我一定会写的</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>vue</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>vue3</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>关于iview框架Modal组件使用的问题</title>
     <link href="/2021/10/25/%E5%85%B3%E4%BA%8Eiview%E6%A1%86%E6%9E%B6Modal%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/"/>
     <url>/2021/10/25/%E5%85%B3%E4%BA%8Eiview%E6%A1%86%E6%9E%B6Modal%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/</url>
