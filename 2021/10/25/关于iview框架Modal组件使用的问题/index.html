@@ -13,21 +13,24 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="凡夫">
   <meta name="keywords" content="">
-  <meta name="description" content="前言公司开发项目所用前端框架一直是iview，最近在使用iview中Modal组件时遇到了一个问题，特写此贴记录 问题复现在页面中引入我司封装好的附件上传组件没有问题，新的需求需要在Modal组件中引入附件上传组件，如下代码所示 12345678910&lt;!-- Modal组件 --&gt;&lt;Modal&gt;&lt;Row&gt;     &lt;!-- 我司封装附件上传组件 --&amp;g">
+  
+    <meta name="description" content="前言公司开发项目所用前端框架一直是iview，最近在使用iview中Modal组件时遇到了一个问题，特写此贴记录 问题复现在页面中引入我司封装好的附件上传组件没有问题，新的需求需要在Modal组件中引入附件上传组件，如下代码所示 12345678910&lt;!-- Modal组件 --&gt;&lt;Modal&gt;&lt;Row&gt;     &lt;!-- 我司封装附件上传组件 --&amp;g">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于iview框架Modal组件使用的问题">
 <meta property="og:url" content="http://example.com/2021/10/25/%E5%85%B3%E4%BA%8Eiview%E6%A1%86%E6%9E%B6Modal%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="凡夫">
 <meta property="og:description" content="前言公司开发项目所用前端框架一直是iview，最近在使用iview中Modal组件时遇到了一个问题，特写此贴记录 问题复现在页面中引入我司封装好的附件上传组件没有问题，新的需求需要在Modal组件中引入附件上传组件，如下代码所示 12345678910&lt;!-- Modal组件 --&gt;&lt;Modal&gt;&lt;Row&gt;     &lt;!-- 我司封装附件上传组件 --&amp;g">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20180314%2F6e1aceb91912452f9c06b1f6b0d40c0c.jpeg&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637746551&t=eb696694b35fde6e4f16fe9bf9a5aba8">
 <meta property="article:published_time" content="2021-10-25T01:46:55.000Z">
 <meta property="article:modified_time" content="2021-10-25T09:37:51.438Z">
 <meta property="article:author" content="凡夫">
 <meta property="article:tag" content="iview">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20180314%2F6e1aceb91912452f9c06b1f6b0d40c0c.jpeg&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637746551&t=eb696694b35fde6e4f16fe9bf9a5aba8">
+  
   
   <title>关于iview框架Modal组件使用的问题 - 凡夫</title>
 
@@ -35,7 +38,7 @@
 
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
 
   
     
@@ -56,7 +59,7 @@
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -66,7 +69,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -210,11 +213,19 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4 分钟
+      12 分钟
     </span>
   
 
   
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
   
 </div>
 
@@ -250,7 +261,7 @@
             <div class="markdown-body">
               <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>公司开发项目所用前端框架一直是iview，最近在使用iview中Modal组件时遇到了一个问题，特写此贴记录</p>
 <h1 id="问题复现"><a href="#问题复现" class="headerlink" title="问题复现"></a>问题复现</h1><p>在页面中引入我司封装好的附件上传组件没有问题，新的需求需要在Modal组件中引入附件上传组件，如下代码所示</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- Modal组件 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">Modal</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">Row</span>&gt;</span><br>     <span class="hljs-comment">&lt;!-- 我司封装附件上传组件 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">attachmentModule</span></span><br><span class="hljs-tag">     <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;showAttachmentModule&quot;</span></span><br><span class="hljs-tag">     <span class="hljs-attr">:attachmentLists</span>=<span class="hljs-string">&quot;attachmentLists&quot;</span></span><br><span class="hljs-tag">    &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">attachmentModule</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">Row</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">Modal</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- Modal组件 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">Modal</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">Row</span>&gt;</span><br>     <span class="hljs-comment">&lt;!-- 我司封装附件上传组件 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">attachmentModule</span></span><br><span class="hljs-tag">     <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;showAttachmentModule&quot;</span></span><br><span class="hljs-tag">     <span class="hljs-attr">:attachmentLists</span>=<span class="hljs-string">&quot;attachmentLists&quot;</span></span><br><span class="hljs-tag">    &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">attachmentModule</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">Row</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">Modal</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>该组件会在mounted阶段调用接口获取已上传的附件列表，当我们代码写好后，问题来了！组件只会在第一次弹开弹窗的时候生效，也就是说只有在第一次弹窗能调用获取附件的接口，此后都不会调用该接口。</p>
 <h1 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h1><p>在知晓没有调用接口的情况下，我们不难猜出，组件在第一遍以后可能没有重新加载mounted阶段，这就意味着dom没有重新渲染，因此我在Modal所在组件mounted生命周期中console.log()了一串字符，保存刷新页面后发现：Modal组件在没有显示弹窗的时候就打印了该字符，也就是说在父组件中Modal已经渲染了一遍，走了一遍生命周期，因此我们可以得出弹窗的显隐应该是v-show(本质是控制dom的visible显隐属性)来控制而非v-if(v-if会动态渲染dom组件)  </p>
 <p>可能有人会说你的附件上传组件用的就是v-if啊 怎么会没有重新渲染呢？因为<code>&lt;Modal&gt;</code>组件没有重新渲染，因此v-if判断条件showAttachmentModule的值自第一遍之后就一直没有改变过，这样自然不会触发附件上传组件的mounted生命周期以调用获取附件接口。</p>
@@ -324,7 +335,7 @@
     Fluid.utils.loadComments('#valine', function() {
       Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
         var options = Object.assign(
-          {"appId":"3RroP4kX01UwkMkBheQMEt3Y-MdYXbMMI","appKey":"272lbUyG1sRpntG3YBOA9Q5e","path":"window.location.pathname","placeholder":"文明吐槽😘(建议输入昵称及邮箱,以便接收回复提醒)","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":null,"emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"3RroP4kX01UwkMkBheQMEt3Y-MdYXbMMI","appkey":"272lbUyG1sRpntG3YBOA9Q5e"},
+          {"appId":"3RroP4kX01UwkMkBheQMEt3Y-MdYXbMMI","appKey":"272lbUyG1sRpntG3YBOA9Q5e","path":"window.location.pathname","placeholder":"来啦！老弟😘(建议输入昵称及邮箱,以便接收回复提醒)","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://3rrop4kx.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"3RroP4kX01UwkMkBheQMEt3Y-MdYXbMMI","appkey":"272lbUyG1sRpntG3YBOA9Q5e"},
           {
             el: "#valine",
             path: window.location.pathname
@@ -494,7 +505,7 @@
       var typing = Fluid.plugins.typing;
       var title = document.getElementById('subtitle').title;
       
-      typing(title)
+        typing(title);
       
     })(window, document);
   </script>

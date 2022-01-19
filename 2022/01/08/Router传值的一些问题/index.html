@@ -13,21 +13,24 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="凡夫">
   <meta name="keywords" content="">
-  <meta name="description" content="前言最近在写项目期间，频繁用到路由传值，特在此记录路由传值的一些要点，众所周知，VueRouter中传参分为params和query两种传参方式，特于此记录下两者的异同 params传参params传参，就好比post请求，其参数不会显示在地址栏中，其用法如下所示 声明式12&lt;!-- name为组件路由名，params为参数 --&gt;&lt;router-link :to&#x3D;&quot;&amp;">
+  
+    <meta name="description" content="前言最近在写项目期间，频繁用到路由传值，特在此记录路由传值的一些要点，众所周知，VueRouter中传参分为params和query两种传参方式，特于此记录下两者的异同 params传参params传参，就好比post请求，其参数不会显示在地址栏中，其用法如下所示 声明式12&lt;!-- name为组件路由名，params为参数 --&gt;&lt;router-link :to&#x3D;&quot;&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Vue Router传值的一些问题">
 <meta property="og:url" content="http://example.com/2022/01/08/Router%E4%BC%A0%E5%80%BC%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="凡夫">
 <meta property="og:description" content="前言最近在写项目期间，频繁用到路由传值，特在此记录路由传值的一些要点，众所周知，VueRouter中传参分为params和query两种传参方式，特于此记录下两者的异同 params传参params传参，就好比post请求，其参数不会显示在地址栏中，其用法如下所示 声明式12&lt;!-- name为组件路由名，params为参数 --&gt;&lt;router-link :to&#x3D;&quot;&amp;">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img0.baidu.com/it/u=1077911779,3855084032&fm=253&fmt=auto&app=138&f=JPEG?w=704&h=500">
 <meta property="article:published_time" content="2022-01-08T06:47:55.000Z">
 <meta property="article:modified_time" content="2022-01-08T08:41:52.240Z">
 <meta property="article:author" content="凡夫">
 <meta property="article:tag" content="vueRouter">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img0.baidu.com/it/u=1077911779,3855084032&fm=253&fmt=auto&app=138&f=JPEG?w=704&h=500">
+  
   
   <title>使用Vue Router传值的一些问题 - 凡夫</title>
 
@@ -35,7 +38,7 @@
 
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
 
   
     
@@ -56,7 +59,7 @@
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -66,7 +69,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -210,11 +213,19 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5 分钟
+      14 分钟
     </span>
   
 
   
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
   
 </div>
 
@@ -250,7 +261,7 @@
             <div class="markdown-body">
               <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在写项目期间，频繁用到路由传值，特在此记录路由传值的一些要点，众所周知，VueRouter中传参分为params和query两种传参方式，特于此记录下两者的异同</p>
 <h1 id="params传参"><a href="#params传参" class="headerlink" title="params传参"></a>params传参</h1><p>params传参，就好比post请求，其参数不会显示在地址栏中，其用法如下所示</p>
-<h3 id="声明式"><a href="#声明式" class="headerlink" title="声明式"></a>声明式</h3><figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="xml"><span class="hljs-comment">&lt;!-- name为组件路由名，params为参数 --&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">:to</span>=<span class="hljs-string">&quot;</span></span></span><span class="hljs-template-variable">&#123; name: &#x27;home&#x27;, params: &#123; username: username &#125;</span><span class="xml"><span class="hljs-tag"><span class="hljs-string"> &#125;&quot;</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+<h3 id="声明式"><a href="#声明式" class="headerlink" title="声明式"></a>声明式</h3><figure class="highlight dust"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><pre><code class="hljs dust"><span class="xml"><span class="hljs-comment">&lt;!-- name为组件路由名，params为参数 --&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">:to</span>=<span class="hljs-string">&quot;</span></span></span><span class="hljs-template-variable">&#123; name: &#x27;home&#x27;, params: &#123; username: username &#125;</span><span class="xml"><span class="hljs-tag"><span class="hljs-string"> &#125;&quot;</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
 <h3 id="编程式"><a href="#编程式" class="headerlink" title="编程式"></a>编程式</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs stylus">data:&#123;<br> username: <span class="hljs-string">&#x27;&#x27;</span><br>&#125;,<br><span class="hljs-function"><span class="hljs-title">login</span><span class="hljs-params">()</span></span> &#123;<br>  this.<span class="hljs-variable">$router</span><span class="hljs-selector-class">.push</span>(&#123;<br>    name: <span class="hljs-string">&#x27;home&#x27;</span>, <br>    params: &#123; username: this<span class="hljs-selector-class">.username</span> &#125;,<br>  &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
 <blockquote>
 <p><em><strong>注意：使用params传参时必须配合name使用，使用path将无效(亲测)</strong></em></p>
@@ -333,7 +344,7 @@
     Fluid.utils.loadComments('#valine', function() {
       Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
         var options = Object.assign(
-          {"appId":"3RroP4kX01UwkMkBheQMEt3Y-MdYXbMMI","appKey":"272lbUyG1sRpntG3YBOA9Q5e","path":"window.location.pathname","placeholder":"文明吐槽😘(建议输入昵称及邮箱,以便接收回复提醒)","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":null,"emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"3RroP4kX01UwkMkBheQMEt3Y-MdYXbMMI","appkey":"272lbUyG1sRpntG3YBOA9Q5e"},
+          {"appId":"3RroP4kX01UwkMkBheQMEt3Y-MdYXbMMI","appKey":"272lbUyG1sRpntG3YBOA9Q5e","path":"window.location.pathname","placeholder":"来啦！老弟😘(建议输入昵称及邮箱,以便接收回复提醒)","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://3rrop4kx.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"3RroP4kX01UwkMkBheQMEt3Y-MdYXbMMI","appkey":"272lbUyG1sRpntG3YBOA9Q5e"},
           {
             el: "#valine",
             path: window.location.pathname
@@ -503,7 +514,7 @@
       var typing = Fluid.plugins.typing;
       var title = document.getElementById('subtitle').title;
       
-      typing(title)
+        typing(title);
       
     })(window, document);
   </script>
